@@ -52,7 +52,7 @@ type GrpcConfig struct {
 func ReadGrpcConfig() (*GrpcConfig, error) {
 	flag.Parse()
 	var path string
-	flag.StringVar(&path, "config_path", "../../configs/auth_server_cfg.yaml", "Путь к конфигу")
+	flag.StringVar(&path, "config_path_auth", "../../configs/auth_server_cfg.yaml", "Путь к конфигу")
 
 	grpcConfig := GrpcConfig{}
 	grpcFile, err := os.ReadFile(path)
