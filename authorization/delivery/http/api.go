@@ -320,6 +320,15 @@ func (a *API) Profile(w http.ResponseWriter, r *http.Request) {
 	birthDate := r.FormValue("birthday")
 	password := r.FormValue("password")
 	photo, handler, err := r.FormFile("photo")
+
+    isRepeatPassword, err := a.core.CheckPassword(login, password)
+
+	if isRepeatPassword {
+		response.Status = http.StatusConflict
+		requests.SendResponse(w, response, a.lg)
+		return
+	}
+	
 	var filename string
 	if handler == nil {
 		filename = ""
